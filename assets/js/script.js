@@ -1,15 +1,19 @@
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
 
-const image = new Image();
-image.src = './assets/img/flowertest.jpg'; // Replace with the path to your image
+const image1 = new Image();
+image1.src = './assets/img/fWilhelm.jpg';
+
+const image2 = new Image();
+image2.src = './assets/img/flowertest.jpg';
 
 const circleSize = 5;
 const circles = [];
+let currentImage = image1;
 
-image.onload = function() {
-    // Draw the image on the canvas
-    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+image1.onload = function () {
+    // Draw the initial image on the canvas
+    ctx.drawImage(currentImage, 0, 0, canvas.width, canvas.height);
 
     // Get image data
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -51,6 +55,9 @@ function handleMouseMove(event) {
 
     // Clear the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw the current image on the canvas
+    ctx.drawImage(currentImage, 0, 0, canvas.width, canvas.height);
 
     // Draw circles with updated positions
     circles.forEach(circle => {
